@@ -2,6 +2,15 @@
 
 このマニュアルは gherkin-testcafe で E2E テストする場合のポイントをまとめたドキュメントです。
 
+## 目次
+
+1. [開発環境の準備](#prepare)
+2. [プロジェクトの作成](#project)
+3. [Gherkin 記法](#gherkin)
+4. [TestCafe の使い方](#testcafe)
+
+<a id="prepare"></a>
+
 ## 開発環境の準備
 
 _※パッケージマネージャとして yarn を使う前提で記述します。 npm を使う場合は適宜読み替えてください。_
@@ -23,6 +32,8 @@ _※パッケージマネージャとして yarn を使う前提で記述しま�
 「Cucumber (Gherkin) Full Support」をインストールします。
 
 [https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete)
+
+<a id="project"></a>
 
 ## プロジェクトの作成
 
@@ -82,6 +93,8 @@ TestCafe の設定ファイルを作成します。tsconfig.json へのパスを
   }
 }
 ```
+
+<a id="gherkin"></a>
 
 ## Gherkin 記法
 
@@ -366,7 +379,9 @@ $ NODE_PATH=./tests ./node_modules/.bin/gherkin-testcafe chrome --tags @only tes
 
 [https://www.npmjs.com/package/gherkin-testcafe#tags](https://www.npmjs.com/package/gherkin-testcafe#tags)
 
-## TestCafe
+<a id="testcafe"></a>
+
+## TestCafe の使い方
 
 TestCafe は E2E テストを行うためのフレームワークです。gherkin-testcafe を使用すると TestCafe を Gherkin 記法で利用できます。
 
