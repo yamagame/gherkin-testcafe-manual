@@ -8,6 +8,7 @@
 2. [プロジェクトの作成](#project)
 3. [Gherkin 記法](#gherkin)
 4. [TestCafe の使い方](#testcafe)
+5. [Docker で使用](#docker)
 
 <a id="prepare"></a>
 
@@ -464,3 +465,29 @@ Then("URLが「example.com」を含む", async (t: TestController) => {
   await t.expect(getLocation()).contains('example.com');
 });
 ```
+
+<a id="docker"></a>
+
+## Docker で使用
+
+Docker を使ったテストは下記のように実行します。
+
+初めに下記のコマンドで testcafe のコンテナを起動します。
+
+```bash
+$ docker run --add-host=localhost:127.0.0.1 -p 1337:1337 -p 1338:1338 -v ${PWD}:/tests -it --rm -w /tests --entrypoint "/bin/sh" testcafe/testcafe
+```
+
+コンテナ内のシェルに入ったら、下記コマンドでテストしたいフィーチャを指定します。
+
+```bash
+$ NODE_PATH=./tests ./node_modules/.bin/gherkin-testcafe remote --hostname localhost --ports 1337,1338 --qr-code tests/**/*.ts tests/features/add.feature
+```
+
+実行すると以下の様な画面になりますのでホスト PC のブラウザから http://localhost:1337/browser/connect に接続します。
+
+localhost と指定した部分をホスト PC の IP アドレスにすることで、同じネットワーク内にいる他の PC やスマートフォンのブラウザを接続してテストすることもできます。
+
+![images/docker-run.png](images/docker-run.png)
+
+接続するとテストが実行され結果が表示されます。
