@@ -69,10 +69,10 @@ typescript で開発する場合は ./tsconfig.json を作成します。baseUrl
 }
 ```
 
-Cucumber のオートコンプリートの設定をします。この設定をすることでステップ関数のオートコンプリートや定義へジャンプができるようになります。
+.vscode/settings.json を作成し Cucumber のオートコンプリートの設定をします。この設定をすることでステップ関数のオートコンプリートや定義へジャンプができるようになります。
 
 ```json
-// .vscode/setting.json
+// .vscode/settings.json
 {
   "cucumberautocomplete.steps": ["tests/**/*.ts"],
   "cucumberautocomplete.strictGherkinCompletion": true,
@@ -119,7 +119,7 @@ Given、When、And、Then の行はステップと呼ばれています。この
 次のコードブロックは足し算をテストするために必要なステップの実装コードです。tests/common/add.ts に下記のファイルを作成します。
 
 ```TypeScript
-const assert = require("assert");
+import { Selector } from "testcafe";
 import { Given, When, Then } from "@cucumber/cucumber";
 
 Given("変数を初期化する", async (t: TestController) => {
@@ -131,11 +131,11 @@ When("変数に {int} を加える", async (t: TestController, [value]) => {
 });
 
 Then("変数は {int} になる", async (t: TestController, [value]) => {
-  assert.equal(t.ctx.variable, value);
+  await t.expect(value).eql(t.ctx.variable);
 });
 ```
 
-各ステップ関数の引数 t はワールドオブジェクトです。 Gherkin-testcafe の場合のワールドオブジェクトは TestCafe のインスタンスになります。
+各ステップ関数の引数 t はワールドオブジェクトです。gherkin-testcafe の場合のワールドオブジェクトは TestCafe のインスタンスになります。
 t.ctx は実装者が自由に使って良いオブジェクトです。ここでは足し合わせた結果の variable プロパティを追加しています。
 
 このシナリオを実行するには以下のコマンドを入力します。
@@ -262,7 +262,6 @@ Gherkin 記法ではステップとして以下の記述を定義しています
 これらのステップ関数は Cucumber.js の実装では defineStep 関数へのエイリアスで区別されません。ですから、以下の３つのステップ関数は同じ定義になります。
 
 ```JavaScript
-const assert = require("assert");
 import { Given, When, Then } from "@cucumber/cucumber";
 
 Given("変数を初期化する", async (t: TestController) => {
@@ -418,7 +417,7 @@ import { Then } from "@cucumber/cucumber";
 import { Selector } from "testcafe";
 
 Then("「タイトル」が存在する", async (t: TestController) => {
-  const selector = Selector("h1.tSelectoritle").withText("タイトル");
+  const selector = Selector("h1.title").withText("タイトル");
   await t.expect(selector.exists).ok();
 });
 ```
