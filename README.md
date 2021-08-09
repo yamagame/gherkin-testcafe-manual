@@ -144,6 +144,14 @@ t.ctx は実装者が自由に使って良いオブジェクトです。ここ�
 $ NODE_PATH=./tests ./node_modules/.bin/gherkin-testcafe chrome tests/**/*.ts tests/features/add.feature
 ```
 
+実行したい feature ファイルを指定します。下記のようにすると tests/features ディレクトリに入っているシナリオを全て実行します。
+
+```bash
+$ NODE_PATH=./tests ./node_modules/.bin/gherkin-testcafe chrome tests/**/*.ts tests/features/*.feature
+```
+
+環境変数 NODE_PATH は import の相対パスを省略するためのおまじないです。
+
 実行すると次の様になります。
 
 ```bash
