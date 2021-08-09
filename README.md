@@ -197,6 +197,8 @@ When("変数に {int} と {int} を加える", async (t: TestController, [value1
 - {word} : スペースなしの文字列
 - {string} : "..." で囲まれた文字列
 
+文字列で指定する以外に、正規表現を用いてステップ関数を定義することもできます。
+
 Cucumber 記法について詳しくは下記ページを参照してください。
 
 [https://cucumber.io/docs/cucumber/cucumber-expressions](https://cucumber.io/docs/cucumber/cucumber-expressions)
