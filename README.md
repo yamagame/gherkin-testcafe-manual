@@ -37,7 +37,7 @@ _※パッケージマネージャとして yarn を使う前提で記述しま�
 
 ## プロジェクトの作成
 
-適当な場所にディレクトリを作成し、package.json を作成します。すでにプロジェクトがある場合は、そのプロジェクトのディレクトリへ移動します。
+適当な場所にディレクトリを作成し package.json を作成します。すでにプロジェクトがある場合はそのプロジェクトのディレクトリへ移動します。
 
 ```bash
 $ mkdir work
@@ -64,7 +64,7 @@ typescript で開発する場合は ./tsconfig.json を作成します。baseUrl
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": "tests/"
+    "baseUrl": "tests"
   }
 }
 ```
