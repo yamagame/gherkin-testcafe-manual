@@ -83,6 +83,7 @@ typescript で開発する場合は ./tsconfig.json を作成します。baseUrl
 ```
 
 TestCafe の設定ファイルを作成します。tsconfig.json へのパスを設定しています。
+screenshots オプションにはテストに失敗したときにフル画面のスクリーンショットを撮るように指定しています。
 
 ```json
 // .testcaferc.json
