@@ -91,6 +91,10 @@ TestCafe の設定ファイルを作成します。tsconfig.json へのパスを
     "typescript": {
       "configPath": "tsconfig.json"
     }
+  },
+  "screenshots": {
+    "takeOnFails": true,
+    "fullPage": true
   }
 }
 ```
