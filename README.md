@@ -170,6 +170,10 @@ $
 
 ### Cucumber 記法
 
+Cucumber は Gherkin 記法の実装の一つです。
+
+[https://cucumber.io/](https://cucumber.io/)
+
 「{int}」の部分はシナリオに定義された値が第２引数にパラメータとして渡されます。
 
 ```TypeScript
@@ -379,6 +383,7 @@ Feature: サンプルフィーチャです
     Then  変数は 2 になる
 ```
 
+--tags オブションを使用することで、タグが付けられたシナリオだけを実行したり除外したりすることができます。
 次のコマンドを実行することで「@only」タグが付いたシナリオだけ実行することができます。
 
 ```bash
@@ -394,6 +399,8 @@ $ NODE_PATH=./tests ./node_modules/.bin/gherkin-testcafe chrome --tags @only tes
 ## TestCafe の使い方
 
 TestCafe は E2E テストを行うためのフレームワークです。gherkin-testcafe を使用すると TestCafe を Gherkin 記法で利用できます。
+
+[https://github.com/Arthy000/gherkin-testcafe](https://github.com/Arthy000/gherkin-testcafe)
 
 ### セレクタの調べ方
 
