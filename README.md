@@ -463,7 +463,7 @@ import { Selector } from "testcafe";
 
 When("「文字列」を入力", async (t: TestController) => {
   const selector = Selector("input[type='text']");
-  await t.click(selector).typeText(selector, "文字列");
+  await t.click(selector).pressKey("ctrl+a delete").typeText(selector, "文字列");
 });
 ```
 
