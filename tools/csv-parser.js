@@ -90,7 +90,11 @@ function stringify(parsed) {
       if (i > 0) {
         ret += delim;
       }
-      ret += col.value;
+      if (col.value.indexOf('"') >= 0) {
+        ret += `"${col.value.replace(/"/g, '""')}"`;
+      } else {
+        ret += col.value;
+      }
     });
   });
   return ret;
@@ -99,3 +103,10 @@ function stringify(parsed) {
 module.exports.parse = parse;
 module.exports.load = load;
 module.exports.stringify = stringify;
+
+// prettier-ignore
+if (require.main === module) {
+  const csv = load("./test.csv");
+  console.log(csv);
+  console.log(stringify(csv));
+}
