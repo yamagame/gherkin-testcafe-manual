@@ -3,6 +3,15 @@ const debugKeyword = "デバッグ停止";
 class StepArray extends Array {
   constructor({ name, manual, action, params }) {
     super();
+    if (manual !== debugKeyword && manual !== "") {
+      manual.split("\n").forEach((manual) => {
+        this.step(
+          manual,
+          () => manual !== debugKeyword && manual !== "",
+          () => `# ${manual}`
+        );
+      });
+    }
     this.step(
       manual,
       () => manual === debugKeyword,
