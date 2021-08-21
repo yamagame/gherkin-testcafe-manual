@@ -71,8 +71,12 @@ class StepArray extends Array {
     return this._step(value, StepArray.Comment, isValid, callback);
   }
 
-  add(step, action = StepArray.And) {
-    this.push(`${action} ${step}`);
+  add(expression, step = StepArray.And) {
+    if (expression.match(/^\s*[#|もし|かつ|ならば|前提|\*].*/)) {
+      this.push(`${expression}`);
+    } else {
+      this.push(`${step} ${expression}`);
+    }
   }
 }
 
