@@ -14,7 +14,7 @@ const headers = table.slice(0, 1)[0];
 
 const screenNameIndex = headers.reduce(find("画面名"), 0);
 const caseNameIndex = headers.reduce(find("項目名"), 0);
-const manualIndex = headers.reduce(find("手動"), 0);
+const manualIndex = headers.reduce(find("備考"), 0);
 const actionIndex = headers.reduce(find("項目1"), 0);
 
 let context = [];
@@ -67,6 +67,7 @@ const scenarios = headers
             manual: v.manual,
             action: v.row[actionIndex],
             params: {},
+            values: [...v.row].slice(caseNameIndex + 1),
           };
           a.result.push(a.values);
           a.screen = v.row[screenNameIndex];
@@ -84,22 +85,24 @@ const scenarios = headers
     return { ...scenario, screens };
   });
 
-const { scenarioSteps } = require("./scenario-steps");
+const StepArray = require("./step-array");
+const { scenarioSteps } = require("scenario-steps")(StepArray);
 
 console.log(`# language: ja`);
 console.log(`フィーチャ: ${path.parse(filename).name}`);
 
 scenarios.forEach((scenario) => {
-  const steps = [];
-  scenario.screens.forEach((screen) => {
-    const comment = `# ${screen.name}`;
-    if (scenarioSteps[screen.name]) {
-      steps.push([comment, ...scenarioSteps[screen.name](screen)]);
-    } else {
-      steps.push([comment, ...scenarioSteps["デフォルト"](screen)]);
-    }
-  });
+  // if (scenario.name === "@TEST1")
   {
+    const steps = [];
+    scenario.screens.forEach((screen) => {
+      const comment = `# ${screen.name}`;
+      if (scenarioSteps[screen.name]) {
+        steps.push([comment, ...scenarioSteps[screen.name](screen)]);
+      } else {
+        steps.push([comment, ...scenarioSteps["デフォルト"](screen)]);
+      }
+    });
     console.log("");
     console.log(`  ${scenario.name}`);
     console.log(`  シナリオ: ${scenario.title}`);
