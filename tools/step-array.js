@@ -1,9 +1,11 @@
+const debugKeyword = "デバッグ停止";
+
 class StepArray extends Array {
   constructor({ name, manual, action, params }) {
     super();
     this.step(
       manual,
-      () => manual === "停止",
+      () => manual === debugKeyword,
       () => `もし ${manual}`
     );
   }
@@ -20,7 +22,7 @@ class StepArray extends Array {
       isValid(value)
     ) {
       const _callback = callback || isValid;
-      if (value.manual) {
+      if (value.manual === debugKeyword) {
         this.push(`もし ${value.manual}`);
       }
       const r = _callback(value);
