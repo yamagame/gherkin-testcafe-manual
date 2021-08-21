@@ -6,7 +6,14 @@ const path = require("path");
 const { load } = require("./csv-parser");
 
 const filename = process.argv[2] || "./test.csv";
-const table = load(filename);
+const table = load(filename).map((row) => {
+  return row.reduce((a, v) => {
+    const m = { ...v };
+    m.value = m.value.replace(/\r\n/g, "").trim();
+    a.push(m);
+    return a;
+  }, []);
+});
 
 const find = (head) => (a, v, i) => v.value === head ? i : a;
 
