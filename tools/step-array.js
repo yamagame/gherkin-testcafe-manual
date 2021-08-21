@@ -31,6 +31,10 @@ class StepArray extends Array {
       }
     }
   }
+
+  add(step, action = "もし") {
+    this.push(`${action} ${step}`);
+  }
 }
 
 module.exports = StepArray;

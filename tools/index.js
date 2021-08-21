@@ -92,10 +92,11 @@ console.log(`フィーチャ: ${path.parse(filename).name}`);
 scenarios.forEach((scenario) => {
   const steps = [];
   scenario.screens.forEach((screen) => {
+    const comment = `# ${screen.name}`;
     if (scenarioSteps[screen.name]) {
-      steps.push(scenarioSteps[screen.name](screen));
+      steps.push([comment, ...scenarioSteps[screen.name](screen)]);
     } else {
-      steps.push(scenarioSteps["デフォルト"](screen));
+      steps.push([comment, ...scenarioSteps["デフォルト"](screen)]);
     }
   });
   {

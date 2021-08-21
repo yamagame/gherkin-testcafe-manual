@@ -15,6 +15,7 @@ module.exports.scenarioSteps = {
             .join("")}${t.mark !== "◯" ? ` "${t.mark}" ` : ""}を入力`
       );
     });
+    s.add("スクリーンショットを撮る");
     s.step(action, (t) => `もし ${action}`);
     return s;
   },
@@ -24,6 +25,7 @@ module.exports.scenarioSteps = {
     delete args.name;
     const s = new StepArray(args);
     s.step(action, (t) => `前提 ページ「${action}」を開く`);
+    s.add("スクリーンショットを撮る");
     return s;
   },
 
@@ -39,6 +41,7 @@ module.exports.scenarioSteps = {
       }
       return `もし 住所は「${t.values[0]}」「${t.values[1]}」を入力`;
     });
+    s.add("スクリーンショットを撮る");
     s.step(action, (t) => `もし ${action}`);
     return s;
   },
@@ -58,6 +61,7 @@ module.exports.scenarioSteps = {
       (t) => `もし 端末は「${t.values[0]}」を選択`
     );
     s.step(params["容量"], (t) => `もし 容量は「${t.values[0]}」を選択`);
+    s.add("スクリーンショットを撮る");
     s.step(action, () => `もし ${action}`);
     return s;
   },
@@ -68,6 +72,7 @@ module.exports.scenarioSteps = {
     s.step(name, () => `ならば 「${name}」に遷移する`);
     s.step(params["アカウント"], (t) => `もし アカウントは "${t.mark}" を入力`);
     s.step(params["パスワード"], (t) => `もし パスワードは "${t.mark}" を入力`);
+    s.add("スクリーンショットを撮る");
     s.step(action, () => `もし ${action}`);
     return s;
   },
