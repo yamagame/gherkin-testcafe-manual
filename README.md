@@ -478,6 +478,22 @@ Then("URLが「example.com」を含む", async (t: TestController) => {
 });
 ```
 
+### API のモック化
+
+```TypeScript
+import { RequestMock } from "testcafe";
+
+/*
+ * 使用例: API「http://sample.com/api/add」をモック化する
+ */
+Given("API「{word}」をモック化する", async (t: TestController, [word]) => {
+  const mock = RequestMock()
+    .onRequestTo({ url: word, method: "POST" })
+    .respond({ result: 100 }, 203);
+  await t.addRequestHooks(mock);
+});
+```
+
 <a id="docker"></a>
 
 ## Docker で使用
