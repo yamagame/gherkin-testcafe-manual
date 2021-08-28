@@ -1,6 +1,6 @@
-module.exports = function (StepArray) {
+module.exports = function (StepArray, options) {
   const scenarioSteps = {
-    デフォルト: screen => {
+    デフォルト: (screen, options) => {
       const { name, manual, action, params } = screen;
       const s = new StepArray(screen);
       s.given(name, t => `「${name}」に遷移する`);
@@ -19,14 +19,14 @@ module.exports = function (StepArray) {
       return s;
     },
 
-    ページを開く: screen => {
+    ページを開く: (screen, options) => {
       const s = new StepArray(screen);
       s.given(screen, t => `ページ「${t.values[0]}」を開く`);
       s.add("スクリーンショットを撮る");
       return s;
     },
 
-    編集画面: screen => {
+    編集画面: (screen, options) => {
       const { name, manual, action, params } = screen;
       const s = new StepArray(screen);
       s.then(name, t => `「${name}」に遷移する`);
@@ -43,7 +43,7 @@ module.exports = function (StepArray) {
       return s;
     },
 
-    設定画面: screen => {
+    設定画面: (screen, options) => {
       const { name, manual, action, params } = screen;
       const s = new StepArray(screen);
       s.then(name, () => `「${name}」に遷移する`);
@@ -63,7 +63,7 @@ module.exports = function (StepArray) {
       return s;
     },
 
-    スタート画面: screen => {
+    スタート画面: (screen, options) => {
       const { name, manual, action, params } = screen;
       const s = new StepArray(screen);
       s.then(name, () => `「${name}」に遷移する`);

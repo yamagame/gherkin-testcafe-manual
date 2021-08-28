@@ -92,32 +92,31 @@ const scenarios = headers
     return { ...scenario, screens };
   });
 
+const options = process.argv.slice(3);
+
 const StepArray = require("./step-array");
-const { scenarioSteps } = require("scenario-steps")(StepArray);
+const { scenarioSteps } = require("scenario-steps")(StepArray, options);
 
 console.log(`# language: ja`);
 console.log(`フィーチャ: ${path.parse(filename).name}`);
 
 scenarios.forEach(scenario => {
-  // if (scenario.name === "@TEST1")
-  {
-    const steps = [];
-    scenario.screens.forEach(screen => {
-      const comment = `# ${screen.name}`;
-      if (scenarioSteps[screen.name]) {
-        steps.push([comment, ...scenarioSteps[screen.name](screen)]);
-      } else {
-        steps.push([comment, ...scenarioSteps["デフォルト"](screen)]);
-      }
-    });
+  const steps = [];
+  scenario.screens.forEach(screen => {
+    const comment = `# ${screen.name}`;
+    if (scenarioSteps[screen.name]) {
+      steps.push([comment, ...scenarioSteps[screen.name](screen, options)]);
+    } else {
+      steps.push([comment, ...scenarioSteps["デフォルト"](screen, options)]);
+    }
+  });
+  console.log("");
+  console.log(`  ${scenario.name}`);
+  console.log(`  シナリオ: ${scenario.title}`);
+  steps.forEach(step => {
     console.log("");
-    console.log(`  ${scenario.name}`);
-    console.log(`  シナリオ: ${scenario.title}`);
-    steps.forEach(step => {
-      console.log("");
-      step.forEach(s => {
-        console.log(`    ${s}`);
-      });
+    step.forEach(s => {
+      console.log(`    ${s}`);
     });
-  }
+  });
 });
