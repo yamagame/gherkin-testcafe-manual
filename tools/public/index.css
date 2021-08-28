@@ -1,0 +1,52 @@
+body {
+  font-size: 0.7em;
+}
+
+td {
+  overflow: visible;
+  text-overflow: visible;
+  white-space: nowrap;
+  max-width: 0;
+}
+
+.csvTable {
+  border-collapse: collapse;
+  margin: 0px;
+  padding: 0px;
+}
+
+.csvTable td {
+  padding: 2px 8px;
+  border: solid 1px lightgray;
+  height: 1em;
+}
+
+th.fileNameBG {
+  background-color: #adc7ff;
+}
+
+th.caseNameBG {
+  background-color: #b8e5ff;
+}
+
+td.screenBG {
+  background-color: #feedc9;
+}
+
+thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.csvTable th {
+  position: sticky;
+  padding: 2px 8px;
+  border: solid 1px gray;
+}
+
+.pageTitle {
+  margin: 0px;
+  padding: 0 8px 4px;
+}

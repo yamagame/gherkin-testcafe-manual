@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=./steps node index.js > test.feature"
+    "start": "NODE_PATH=./steps node index.js ./patterns/test.csv > ./features/test.feature",
+    "server": "DATA_DIRECTORY=./patterns/ node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   },
   "license": "MIT"
 }
