@@ -1,4 +1,5 @@
-画面名,項目名,項目1,項目2,項目3,備考,@TEST1,@TEST2,@TEST3,@TEST4,@TEST5
+,テスト,サンプル,,,,@TEST1,@TEST2,@TEST3,@TEST4,@TEST5
+画面名,項目名,項目1,項目2,項目3,備考,,,,,
 ページを開く,,sample.com,,,,◯,◯,◯,◯,◯
 スタート画面,,「ログイン」ボタンを押す,,,,◯,◯,◯,◯,◯
 ,アカウント,,,,,test-user,test-user2,test-user3,test-user4,test-user5

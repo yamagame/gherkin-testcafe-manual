@@ -23,25 +23,37 @@ td {
 
 th.fileNameBG {
   background-color: #adc7ff;
+  z-index: 2;
 }
 
 th.caseNameBG {
   background-color: #b8e5ff;
+  z-index: 2;
 }
 
 td.screenBG {
   background-color: #feedc9;
 }
 
-thead th {
-  position: -webkit-sticky;
+thead th.top {
   position: sticky;
   top: 0;
+}
+
+thead th.second {
+  position: sticky;
+  top: 0;
+}
+
+thead th.second.fileNameBG {
   z-index: 1;
 }
 
+thead th.second.caseNameBG {
+  z-index: 3;
+}
+
 .csvTable th {
-  position: sticky;
   padding: 2px 8px;
   border: solid 1px gray;
 }

@@ -61,17 +61,21 @@ function csvDom(csvArray, _options) {
   const options = { ...defaultOptions, ..._options };
   return `<table class="csvTable">\n${csvArray
     .map((col, i) => {
-      if (i === 0) {
-        return `<thead><tr>${col
+      const head = css =>
+        `<thead><tr>${col
           .map(
-            cell =>
-              `<th width=${options.header.width} class="${
-                cell.value.trim().indexOf("@") == 0
+            (cell, j) =>
+              `<th width=${options.header.width} class="${css} ${
+                csvArray[0][j].value.trim().indexOf("@") == 0
                   ? `fileNameBG`
                   : `caseNameBG`
               }">${cell.value}</th>`
           )
           .join("")}</tr></thead>\n<tbody>`;
+      if (i === 0) {
+        return `${head("top")}`;
+      } else if (i === 1) {
+        return `${head("second")}`;
       } else {
         return `<tr>${col
           .map(cell => {

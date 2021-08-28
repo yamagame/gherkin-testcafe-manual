@@ -5,7 +5,7 @@
 const path = require("path");
 const { load } = require("./csv-parser");
 
-const filename = process.argv[2] || "./test.csv";
+const filename = process.argv[2] || "./patterns/test.csv";
 const table = load(filename).map(row => {
   return row.reduce((a, v) => {
     const m = { ...v };
@@ -17,7 +17,13 @@ const table = load(filename).map(row => {
 
 const find = head => (a, v, i) => v.value === head ? i : a;
 
-const headers = table.slice(0, 1)[0];
+const tableHeader = table.slice(0, 2);
+const headers = tableHeader[1].map((v, i) => {
+  if (tableHeader[0][i].value.indexOf("@") == 0) {
+    return tableHeader[0][i];
+  }
+  return v;
+});
 
 const screenNameIndex = headers.reduce(find("画面名"), 0);
 const caseNameIndex = headers.reduce(find("項目名"), 0);
@@ -25,7 +31,7 @@ const manualIndex = headers.reduce(find("備考"), 0);
 const actionIndex = headers.reduce(find("項目1"), 0);
 
 let context = [];
-const filled = table.slice(1).map(row => {
+const filled = table.slice(2).map(row => {
   if (row[screenNameIndex].value !== "") context = [];
   if (row[caseNameIndex].value !== "") context = [context[screenNameIndex]];
   row.forEach((cell, i) => {
