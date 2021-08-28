@@ -6,7 +6,7 @@ const path = require("path");
 const { load } = require("./csv-parser");
 
 const filename = process.argv[2] || "./test.csv";
-const table = load(filename).map((row) => {
+const table = load(filename).map(row => {
   return row.reduce((a, v) => {
     const m = { ...v };
     m.value = m.value.replace(/\r\n/g, "").trim();
@@ -15,7 +15,7 @@ const table = load(filename).map((row) => {
   }, []);
 });
 
-const find = (head) => (a, v, i) => v.value === head ? i : a;
+const find = head => (a, v, i) => v.value === head ? i : a;
 
 const headers = table.slice(0, 1)[0];
 
@@ -25,7 +25,7 @@ const manualIndex = headers.reduce(find("備考"), 0);
 const actionIndex = headers.reduce(find("項目1"), 0);
 
 let context = [];
-const filled = table.slice(1).map((row) => {
+const filled = table.slice(1).map(row => {
   if (row[screenNameIndex].value !== "") context = [];
   if (row[caseNameIndex].value !== "") context = [context[screenNameIndex]];
   row.forEach((cell, i) => {
@@ -41,7 +41,7 @@ const filled = table.slice(1).map((row) => {
   });
 });
 
-const title = (name) => {
+const title = name => {
   const t = name.match(/@(.+)/);
   if (t) return `${t[1]}`;
   return t;
@@ -49,10 +49,10 @@ const title = (name) => {
 
 const scenarios = headers
   .map((v, col) => ({ name: v.value, title: title(v.value), col }))
-  .filter((v) => v.name.indexOf("@") === 0)
-  .map((scenario) => {
+  .filter(v => v.name.indexOf("@") === 0)
+  .map(scenario => {
     const rows = [];
-    filled.forEach((row) => {
+    filled.forEach(row => {
       if (row[scenario.col] !== "") {
         rows.push({
           row: row.filter(
@@ -98,11 +98,11 @@ const { scenarioSteps } = require("scenario-steps")(StepArray);
 console.log(`# language: ja`);
 console.log(`フィーチャ: ${path.parse(filename).name}`);
 
-scenarios.forEach((scenario) => {
+scenarios.forEach(scenario => {
   // if (scenario.name === "@TEST1")
   {
     const steps = [];
-    scenario.screens.forEach((screen) => {
+    scenario.screens.forEach(screen => {
       const comment = `# ${screen.name}`;
       if (scenarioSteps[screen.name]) {
         steps.push([comment, ...scenarioSteps[screen.name](screen)]);
@@ -113,9 +113,9 @@ scenarios.forEach((scenario) => {
     console.log("");
     console.log(`  ${scenario.name}`);
     console.log(`  シナリオ: ${scenario.title}`);
-    steps.forEach((step) => {
+    steps.forEach(step => {
       console.log("");
-      step.forEach((s) => {
+      step.forEach(s => {
         console.log(`    ${s}`);
       });
     });

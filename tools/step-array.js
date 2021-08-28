@@ -10,7 +10,7 @@ class StepArray extends Array {
   constructor({ name, manual, action, params }) {
     super();
     if (manual !== debugKeyword && manual !== "") {
-      manual.split("\n").forEach((manual) => {
+      manual.split("\n").forEach(manual => {
         this.comment(
           manual,
           () => manual !== debugKeyword && manual !== "",
@@ -44,7 +44,7 @@ class StepArray extends Array {
       if (typeof r === "string") {
         this.push(`${step} ${r}`);
       } else if (Array.isArray(r)) {
-        r.forEach((v) => this.push(`${step} ${v}`));
+        r.forEach(v => this.push(`${step} ${v}`));
       }
       return true;
     }
