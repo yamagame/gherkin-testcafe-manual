@@ -57,6 +57,7 @@ function csvDom(csvArray, _options) {
       width: 200,
     },
     colored: false,
+    dobuleHeader: true,
   };
   const options = { ...defaultOptions, ..._options };
   return `<table class="csvTable">\n${csvArray
@@ -74,7 +75,7 @@ function csvDom(csvArray, _options) {
           .join("")}</tr></thead>\n<tbody>`;
       if (i === 0) {
         return `${head("top")}`;
-      } else if (i === 1) {
+      } else if (i === 1 && options.dobuleHeader) {
         return `${head("second")}`;
       } else {
         return `<tr>${col
@@ -84,9 +85,7 @@ function csvDom(csvArray, _options) {
             if (cell.link) {
               return `<td class="${check(screenRow && "screenBG")}"><a href="${
                 cell.link
-              }" target="csv-viewer-${cell.link}">${removeQuote(
-                cell.value
-              )}</a></td>`;
+              }">${removeQuote(cell.value)}</a></td>`;
             } else {
               return `<td class="${check(
                 screenRow && "screenBG"
@@ -161,6 +160,7 @@ app.get("/", function (req, res) {
         header: {
           width: 600,
         },
+        dobuleHeader: false,
       }),
       "CSVファイル一蘭"
     )
