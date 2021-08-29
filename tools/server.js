@@ -217,7 +217,7 @@ app.post("/generate", async (req, res) => {
     return new Promise((resolve, reject) => {
       const dest = fs.createWriteStream(outFile, "utf8");
       const command = spawn(`node`, [`index.js`, csvFile], {
-        env: { ...process.env, NODE_PATH: nodePath, BASE_DIR: patternDir },
+        env: { ...process.env, NODE_PATH: nodePath, CSV_BASE_DIR: patternDir },
       });
       command.stdout.on("data", chunk => {
         process.stdout.write(chunk.toString());

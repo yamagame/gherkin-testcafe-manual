@@ -5,7 +5,7 @@
 const path = require("path");
 const { load } = require("./csv-parser");
 
-const baseDir = process.env["BASE_DIR"] || "";
+const baseDir = process.env["CSV_BASE_DIR"] || "";
 const filename = process.argv[2] || "./patterns/test.csv";
 const basename =
   filename.indexOf(baseDir) === 0 ? filename.replace(baseDir, "") : filename;
