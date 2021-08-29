@@ -1,5 +1,6 @@
 # language: ja
-フィーチャ: test
+# filename: sample/test.csv
+フィーチャ: テスト サンプル
 
   @TEST1
   シナリオ: TEST1

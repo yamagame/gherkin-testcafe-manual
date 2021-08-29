@@ -5,7 +5,11 @@
 const path = require("path");
 const { load } = require("./csv-parser");
 
+const baseDir = process.env["BASE_DIR"] || "";
 const filename = process.argv[2] || "./patterns/test.csv";
+const basename =
+  filename.indexOf(baseDir) === 0 ? filename.replace(baseDir, "") : filename;
+
 const table = load(filename).map(row => {
   return row.reduce((a, v) => {
     const m = { ...v };
@@ -104,7 +108,13 @@ const StepArray = require("./step-array");
 const { scenarioSteps } = require("scenario-steps")(StepArray, options);
 
 console.log(`# language: ja`);
-console.log(`フィーチャ: ${path.parse(filename).name}`);
+console.log(`# filename: ${basename}`);
+console.log(
+  `フィーチャ: ${table[0]
+    .map(v => v.value)
+    .filter(v => v !== "" && v.trim()[0] !== "@")
+    .join(" ")}`
+);
 
 scenarios.forEach(scenario => {
   const steps = [];
