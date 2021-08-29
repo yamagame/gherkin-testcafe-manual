@@ -3,10 +3,15 @@ body {
 }
 
 td {
-  overflow: visible;
-  text-overflow: visible;
-  white-space: nowrap;
-  max-width: 0;
+  padding: 2px 8px;
+  border: solid 1px lightgray;
+  height: 18px;
+}
+
+.topCsvDom {
+  border-collapse: collapse;
+  margin: 0px;
+  padding: 0px;
 }
 
 .csvTable {
@@ -16,9 +21,13 @@ td {
 }
 
 .csvTable td {
+  overflow: visible;
+  text-overflow: visible;
+  white-space: nowrap;
+  max-width: 0;
   padding: 2px 8px;
   border: solid 1px lightgray;
-  height: 1em;
+  height: 18px;
 }
 
 th.fileNameBG {
@@ -54,11 +63,25 @@ thead th.second.caseNameBG {
 }
 
 .csvTable th {
-  padding: 2px 8px;
+  border: solid 1px gray;
+}
+
+.topCsvDom th {
   border: solid 1px gray;
 }
 
 .pageTitle {
   margin: 0px;
   padding: 0 8px 4px;
+}
+
+button.testButton {
+  border-radius: 3px;
+  border: none;
+  padding: 0.5em 2.2em;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  font-size: 0.7em;
+  font-weight: 700;
 }

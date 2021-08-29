@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=./steps node index.js ./patterns/test.csv > ./features/test.feature",
-    "server": "DATA_DIRECTORY=./patterns/ node server.js"
+    "start": "NODE_PATH=./patterns/sample/steps node index.js ./patterns/sample/test.csv > ./features/sample/test.feature",
+    "server": "PATTERN_DIR=./patterns/ FEATURE_DIR=./features/ node server.js"
   },
   "dependencies": {
     "express": "^4.17.1"
