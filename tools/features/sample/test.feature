@@ -1,5 +1,5 @@
 # language: ja
-# filename: sample/test.csv
+# filename: /Users/yamagame/Documents/Develop/UECKobo/gherkin-testcafe-manual/tools/patterns/sample/test.csv
 フィーチャ: テスト サンプル
 
   @TEST1
@@ -90,6 +90,7 @@
     ならば 「設定画面」に遷移する
     もし 端末は "iPhone" "黒" を入力
     もし 容量は "64GB" を入力
+    もし 入力項目の確認
     かつ スクリーンショットを撮る
     もし 「変更」ボタンを押す
 
@@ -144,6 +145,7 @@
     もし デバッグ停止
     もし 端末は "iPhone" "白" を入力
     もし 容量は "64GB" を入力
+    もし 入力項目の確認
     かつ スクリーンショットを撮る
     もし 「変更」ボタンを押す
 

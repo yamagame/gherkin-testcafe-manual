@@ -9,6 +9,9 @@ module.exports = function (StepArray, options) {
           const values = t.values.filter(v => v !== "").map(v => `"${v}"`);
           if (values.length > 0) values.push("");
           const mark = t.mark !== "◯" ? `"${t.mark}" ` : "";
+          if (values.length <= 0 && mark === "") {
+            return `${k}`;
+          }
           return `${k}は ${values.join(" ")}${mark}を入力`;
         });
       });
