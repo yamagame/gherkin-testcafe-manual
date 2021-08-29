@@ -31,17 +31,17 @@ td {
 }
 
 th.fileNameBG {
-  background-color: #adc7ff;
+  background-color: #d5f0ff;
   z-index: 2;
 }
 
 th.caseNameBG {
-  background-color: #b8e5ff;
+  background-color: #def9de;
   z-index: 2;
 }
 
 td.screenBG {
-  background-color: #feedc9;
+  background-color: #ffeed7;
 }
 
 thead th.top {
@@ -63,11 +63,11 @@ thead th.second.caseNameBG {
 }
 
 .csvTable th {
-  border: solid 1px gray;
+  border: solid 1px lightgray;
 }
 
 .topCsvDom th {
-  border: solid 1px gray;
+  border: solid 1px lightgray;
 }
 
 .pageTitle {
