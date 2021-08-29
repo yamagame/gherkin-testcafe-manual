@@ -115,7 +115,7 @@ function csvDom(csvArray, _options, title) {
             } else {
               return `<td class="${check(
                 screenRow && "screenBG"
-              )}">${removeQuote(cell.value)}</td>`;
+              )}">${removeQuote(cell.value).replace(/\n/g, "<br/>")}</td>`;
             }
           })
           .join("")}</tr>\n`;
