@@ -85,3 +85,11 @@ button.testButton {
   font-size: 0.7em;
   font-weight: 700;
 }
+
+button.testButton:hover {
+  background-color: #a5d0ff;
+}
+
+button.testButton:active {
+  background-color: #4080ff;
+}
