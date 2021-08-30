@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { spawn } = require("child_process");
+const { spawn, execSync } = require("child_process");
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -58,7 +58,10 @@ function expandFullSize(csvArray) {
 
 function convertToFeaturePath(fileName) {
   const parsed = path.parse(fileName);
-  return path.join(featureDir, parsed.dir, `${parsed.name}.feature`);
+  const dirPath = path.join(featureDir, parsed.dir);
+  const cmd = `mkdir -p ${dirPath}`;
+  execSync(cmd);
+  return path.join(dirPath, `${parsed.name}.feature`);
 }
 
 function convertToFeatureName(fileName) {
@@ -213,9 +216,9 @@ app.post("/generate", async (req, res) => {
   const parsed = path.parse(fileName);
   const featurePath = convertToFeaturePath(fileName);
   const patternStep = path.join(patternDir, parsed.dir, "steps");
-  const run = (csvFile, nodePath, outFile) => {
+  const dest = fs.createWriteStream(featurePath, "utf8");
+  const run = (csvFile, nodePath) => {
     return new Promise((resolve, reject) => {
-      const dest = fs.createWriteStream(outFile, "utf8");
       const command = spawn(`node`, [`index.js`, csvFile], {
         env: { ...process.env, NODE_PATH: nodePath, CSV_BASE_DIR: patternDir },
       });
@@ -231,7 +234,11 @@ app.post("/generate", async (req, res) => {
       });
     });
   };
-  await run(csvFile, patternStep, featurePath);
+  try {
+    await run(csvFile, patternStep);
+  } finally {
+    dest.close();
+  }
   res.sendStatus(200);
 });
 
