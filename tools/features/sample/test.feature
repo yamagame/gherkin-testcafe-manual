@@ -1,5 +1,5 @@
 # language: ja
-# filename: /Users/yamagame/Documents/Develop/UECKobo/gherkin-testcafe-manual/tools/patterns/sample/test.csv
+# filename: sample/test.csv
 フィーチャ: テスト サンプル
 
   @TEST1
