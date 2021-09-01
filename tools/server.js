@@ -226,6 +226,9 @@ app.post("/generate", async (req, res) => {
         process.stdout.write(chunk.toString());
         dest.write(chunk.toString());
       });
+      command.stderr.on("data", chunk => {
+        process.stderr.write(chunk.toString());
+      });
       command.on("exit", function (code) {
         return resolve(code);
       });

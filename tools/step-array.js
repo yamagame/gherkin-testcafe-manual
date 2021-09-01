@@ -78,6 +78,21 @@ class StepArray extends Array {
       this.push(`${step} ${expression}`);
     }
   }
+
+  step(params) {
+    const step = (k, t) => {
+      const values = t.values.filter(v => v !== "").map(v => `"${v}"`);
+      if (values.length > 0) values.push("");
+      const mark = t.mark !== "◯" ? `"${t.mark}" ` : "";
+      if (values.length <= 0 && mark === "") {
+        return `${k}`;
+      }
+      return `${k}は ${values.join(" ")}${mark}を入力`;
+    };
+    Object.entries(params).forEach(([k, v]) => {
+      this.when(v, t => step(k, t));
+    });
+  }
 }
 
 module.exports = StepArray;

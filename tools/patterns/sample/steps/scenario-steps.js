@@ -4,17 +4,7 @@ module.exports = function (StepArray, options) {
       const { name, manual, action, params } = screen;
       const s = new StepArray(screen);
       s.then(name, t => `「${name}」に遷移する`);
-      Object.entries(params).forEach(([k, v]) => {
-        s.when(v, t => {
-          const values = t.values.filter(v => v !== "").map(v => `"${v}"`);
-          if (values.length > 0) values.push("");
-          const mark = t.mark !== "◯" ? `"${t.mark}" ` : "";
-          if (values.length <= 0 && mark === "") {
-            return `${k}`;
-          }
-          return `${k}は ${values.join(" ")}${mark}を入力`;
-        });
-      });
+      s.step(params);
       s.add("スクリーンショットを撮る");
       s.when(action, t => `${action}`);
       return s;
