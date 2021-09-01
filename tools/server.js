@@ -215,7 +215,7 @@ app.post("/generate", async (req, res) => {
   const csvFile = path.join(patternDir, fileName);
   const parsed = path.parse(fileName);
   const featurePath = convertToFeaturePath(fileName);
-  const patternStep = path.join(patternDir, parsed.dir, "steps");
+  const patternStep = path.join(patternDir, parsed.dir);
   const dest = fs.createWriteStream(featurePath, "utf8");
   const run = (csvFile, nodePath) => {
     return new Promise((resolve, reject) => {
